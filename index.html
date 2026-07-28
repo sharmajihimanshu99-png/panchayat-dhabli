@@ -1,313 +1,1048 @@
 <!DOCTYPE html>
-<html lang="hi" class="scroll-smooth">
+<html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gram Panchayat Dhabli - E-Governance Portal</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>आदर्श ग्राम पंचायत | Adarsh Gram Panchayat — आधिकारिक वेबसाइट</title>
+<meta name="description" content="आदर्श ग्राम पंचायत की आधिकारिक वेबसाइट — सेवाएं, योजनाएं, सूचनाएं, पदाधिकारी एवं संपर्क जानकारी।">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Ccircle cx='24' cy='24' r='23' fill='%231E2A52'/%3E%3Cellipse cx='18' cy='19' rx='9' ry='7' fill='%23E0932B'/%3E%3Cellipse cx='29' cy='20' rx='8' ry='6' fill='%23E0932B'/%3E%3Cline x1='20' y1='25' x2='19' y2='34' stroke='%23EDE6D6' stroke-width='2'/%3E%3Cline x1='27' y1='25' x2='28' y2='34' stroke='%23EDE6D6' stroke-width='2'/%3E%3C/svg%3E">
+<style>
+/* ============ FONTS ============ */
+@import url('https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@0;1&family=Hind:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap');
+
+/* ============ DESIGN TOKENS ============ */
+:root{
+  --indigo:#1E2A52;
+  --indigo-dark:#141D3C;
+  --turmeric:#E0932B;
+  --turmeric-dark:#BE7616;
+  --mitti:#A8431F;
+  --banyan:#33502F;
+  --banyan-light:#4A6B45;
+  --khadi:#EDE6D6;
+  --linen:#F6F2E8;
+  --paper:#FFFDF7;
+  --ink:#2A2420;
+  --muted:#786E60;
+  --border:#DDD2BA;
+  --shadow:0 10px 28px rgba(20,29,60,.10);
+  --shadow-sm:0 4px 12px rgba(20,29,60,.08);
+  --radius:16px;
+  --radius-sm:10px;
+  --container:1180px;
+  --font-display:'Tiro Devanagari Hindi', 'Rajdhani', serif;
+  --font-body:'Hind', system-ui, sans-serif;
+  --font-data:'Rajdhani', 'Hind', sans-serif;
+}
+
+/* ============ RESET & BASE ============ */
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:var(--font-body);
+  font-size:1rem;
+  color:var(--ink);
+  background:var(--linen);
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:var(--font-display);color:var(--indigo);margin:0 0 .5rem;line-height:1.3;font-weight:400;}
+h2{font-size:clamp(1.55rem,3vw,2.25rem);}
+h3{font-size:1.2rem;font-family:var(--font-body);font-weight:600;}
+p{margin:0 0 1rem;}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;margin:0;padding:0;}
+img{max-width:100%;display:block;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+input,select,textarea{font-family:inherit;font-size:1rem;}
+:focus-visible{outline:3px solid var(--turmeric);outline-offset:2px;}
+
+.container{max-width:var(--container);margin:0 auto;padding:0 1.25rem;}
+.section{padding:4.5rem 0;}
+.section-linen{background:var(--linen);}
+.section-khadi{background:var(--khadi);}
+.section-dark{background:var(--indigo);color:var(--khadi);}
+.section-dark h2{color:var(--paper);}
+.section-wash{background:linear-gradient(180deg,#FBE9CE,#F6DDB3);}
+
+.section-head{max-width:680px;margin:0 auto 2.75rem;text-align:center;}
+.section-head p{color:var(--muted);max-width:520px;margin:.6rem auto 0;}
+
+.stamp{
+  display:inline-block;
+  font-family:var(--font-data);
+  font-weight:600;
+  font-size:.78rem;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--mitti);
+  border:1.5px solid var(--mitti);
+  padding:.25rem .8rem;
+  border-radius:3px;
+  transform:rotate(-1.5deg);
+  margin-bottom:.9rem;
+}
+.section-dark .stamp{color:var(--turmeric);border-color:var(--turmeric);}
+
+.btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-family:var(--font-body);font-weight:600;font-size:1rem;
+  padding:.85rem 1.6rem;border-radius:999px;
+  transition:transform .15s ease,box-shadow .15s ease,background .15s ease;
+}
+.btn-primary{background:var(--turmeric);color:var(--indigo-dark);}
+.btn-primary:hover{background:var(--turmeric-dark);transform:translateY(-2px);box-shadow:var(--shadow-sm);}
+.btn-outline{border:2px solid var(--khadi);color:var(--khadi);}
+.btn-outline:hover{background:rgba(237,230,214,.12);transform:translateY(-2px);}
+.btn-solid{background:var(--indigo);color:var(--paper);}
+.btn-solid:hover{background:var(--indigo-dark);transform:translateY(-2px);box-shadow:var(--shadow-sm);}
+.btn-sm{padding:.55rem 1.1rem;font-size:.9rem;}
+.btn-block{width:100%;justify-content:center;}
+
+.card{
+  background:var(--paper);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow-sm);
+  padding:1.6rem;
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
+
+.grid{display:grid;gap:1.5rem;}
+.grid-auto{grid-template-columns:repeat(auto-fit,minmax(230px,1fr));}
+.grid-auto-sm{grid-template-columns:repeat(auto-fit,minmax(190px,1fr));}
+.grid-2{display:grid;gap:2.5rem;grid-template-columns:1fr;}
+@media(min-width:860px){.grid-2{grid-template-columns:1.15fr .85fr;align-items:start;}}
+
+.icon{width:26px;height:26px;stroke:currentColor;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+.icon-lg{width:34px;height:34px;}
+
+.badge{display:inline-block;font-family:var(--font-data);font-weight:600;font-size:.78rem;letter-spacing:.03em;padding:.2rem .65rem;border-radius:999px;}
+.badge-new{background:var(--mitti);color:var(--paper);}
+.badge-done{background:var(--banyan);color:var(--paper);}
+.badge-progress{background:var(--turmeric);color:var(--indigo-dark);}
+.badge-proposed{background:var(--border);color:var(--ink);}
+
+table{width:100%;border-collapse:collapse;font-size:.97rem;}
+th,td{text-align:left;padding:.85rem .9rem;border-bottom:1px solid var(--border);}
+th{font-family:var(--font-data);font-weight:600;letter-spacing:.03em;color:var(--indigo);text-transform:uppercase;font-size:.82rem;}
+.table-wrap{overflow-x:auto;background:var(--paper);border:1px solid var(--border);border-radius:var(--radius);}
+.table-wrap table{min-width:480px;}
+
+.placeholder-note{color:var(--mitti);font-size:.85rem;font-style:italic;}
+
+/* ============ SKIP LINK ============ */
+.skip-link{position:absolute;left:-999px;top:0;background:var(--indigo);color:var(--paper);padding:.8rem 1.2rem;z-index:2000;border-radius:0 0 8px 0;}
+.skip-link:focus{left:0;}
+
+/* ============ TOPBAR ============ */
+.topbar{background:var(--indigo-dark);color:var(--khadi);font-size:.82rem;}
+.topbar .container{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-top:.45rem;padding-bottom:.45rem;flex-wrap:wrap;}
+.topbar-tag{opacity:.85;}
+.font-controls{display:flex;align-items:center;gap:.35rem;}
+.font-controls button{width:26px;height:26px;border:1px solid rgba(237,230,214,.4);border-radius:5px;color:var(--khadi);font-family:var(--font-data);font-size:.8rem;line-height:1;}
+.font-controls button:hover{background:rgba(237,230,214,.15);}
+
+/* ============ HEADER / NAV ============ */
+.site-header{position:sticky;top:0;z-index:900;background:var(--indigo);box-shadow:0 2px 0 rgba(0,0,0,.06);}
+.site-header.scrolled{box-shadow:var(--shadow);}
+.nav-row{display:flex;align-items:center;justify-content:space-between;padding:.85rem 0;gap:1rem;}
+.brand{display:flex;align-items:center;gap:.7rem;color:var(--paper);}
+.brand-name{font-family:var(--font-display);font-size:1.25rem;line-height:1.15;}
+.brand-name small{display:block;font-family:var(--font-data);font-size:.68rem;letter-spacing:.12em;color:var(--turmeric);font-weight:600;}
+
+.nav-menu{display:flex;gap:1.6rem;}
+.nav-menu a{color:var(--khadi);font-weight:500;font-size:.97rem;padding:.3rem 0;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;}
+.nav-menu a:hover,.nav-menu a.active{color:var(--turmeric);border-color:var(--turmeric);}
+
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:30px;height:30px;}
+.hamburger span{display:block;height:2.5px;background:var(--khadi);border-radius:2px;transition:transform .25s ease,opacity .25s ease;}
+.hamburger.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg);}
+
+@media(max-width:860px){
+  .nav-menu{position:fixed;top:var(--header-h,0);left:0;right:0;background:var(--indigo);flex-direction:column;gap:0;max-height:0;overflow:hidden;transition:max-height .3s ease;box-shadow:var(--shadow);}
+  .nav-menu.open{max-height:520px;}
+  .nav-menu a{padding:.95rem 1.25rem;border-bottom:1px solid rgba(237,230,214,.12);width:100%;}
+  .hamburger{display:flex;}
+}
+
+/* ============ HERO ============ */
+.hero{position:relative;background:var(--indigo);color:var(--khadi);overflow:hidden;padding-top:3.5rem;}
+.canopy-wrap{position:absolute;inset:0 0 auto 0;height:150px;pointer-events:none;overflow:hidden;}
+.canopy{width:100%;height:100%;}
+.canopy-leaf{animation:sway 9s ease-in-out infinite alternate;transform-origin:50% 0%;}
+@keyframes sway{from{transform:rotate(-1deg) translateX(-3px);}to{transform:rotate(1deg) translateX(3px);}}
+.hero-inner{position:relative;padding:5rem 0 4rem;text-align:center;max-width:760px;margin:0 auto;}
+.hero-inner h1{color:var(--paper);font-size:clamp(2rem,5vw,3.1rem);}
+.hero-eng{font-family:var(--font-data);letter-spacing:.14em;color:var(--turmeric);font-size:.95rem;font-weight:600;margin-bottom:1rem;}
+.hero-tagline{font-family:var(--font-display);font-style:italic;font-size:clamp(1.05rem,2.2vw,1.35rem);color:var(--khadi);margin:0 0 1rem;}
+.hero-sub{color:#C9C2AF;max-width:520px;margin:0 auto 2rem;}
+.hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+
+@media(prefers-reduced-motion:reduce){.canopy-leaf{animation:none;}}
+
+/* ============ STATS ============ */
+.stats{background:var(--indigo-dark);padding:2.5rem 0 3rem;}
+.stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.75rem;text-align:center;}
+@media(min-width:640px){.stats-grid{grid-template-columns:repeat(4,1fr);}}
+.stat-num{font-family:var(--font-data);font-weight:700;font-size:clamp(1.7rem,4vw,2.5rem);color:var(--turmeric);}
+.stat-label{color:#C9C2AF;font-size:.9rem;margin-top:.2rem;}
+
+/* ============ ABOUT ============ */
+.about-text p{color:var(--ink);}
+.mission-list li{display:flex;gap:.6rem;margin-bottom:.6rem;color:var(--ink);}
+.mission-list .icon{color:var(--banyan);margin-top:.15rem;}
+.facts-card dl{display:grid;grid-template-columns:auto 1fr;gap:.5rem 1rem;margin:0;font-size:.95rem;}
+.facts-card dt{color:var(--muted);}
+.facts-card dd{margin:0;font-weight:600;}
+.sarpanch-card{margin-top:2.25rem;display:flex;gap:1.25rem;align-items:flex-start;flex-wrap:wrap;}
+.avatar{width:64px;height:64px;border-radius:50%;background:var(--indigo);color:var(--turmeric);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:1.5rem;flex-shrink:0;}
+.sarpanch-card blockquote{margin:0 0 .6rem;font-family:var(--font-display);font-style:italic;font-size:1.08rem;color:var(--ink);}
+.sarpanch-card cite{font-style:normal;color:var(--muted);font-size:.9rem;}
+
+/* ============ MEMBERS ============ */
+.member-card{text-align:center;}
+.member-card .avatar{margin:0 auto .9rem;}
+.member-card h3{margin-bottom:.15rem;}
+.member-role{color:var(--mitti);font-weight:600;font-size:.88rem;margin-bottom:.5rem;}
+.member-phone{font-family:var(--font-data);color:var(--muted);font-size:.9rem;}
+
+/* ============ SERVICES / SCHEMES ============ */
+.svc-card,.scheme-card{display:flex;flex-direction:column;gap:.7rem;}
+.svc-card .icon,.scheme-card .icon{color:var(--indigo);}
+.svc-card h3,.scheme-card h3{margin-bottom:0;}
+.svc-eng,.scheme-eng{color:var(--muted);font-size:.85rem;margin-top:-.5rem;}
+.scheme-card p{color:var(--ink);font-size:.95rem;margin-bottom:.25rem;}
+
+/* ============ MODAL ============ */
+.modal{display:none;position:fixed;inset:0;background:rgba(20,17,13,.55);z-index:1000;align-items:center;justify-content:center;padding:1.25rem;}
+.modal.active{display:flex;}
+.modal-box{background:var(--paper);border-radius:var(--radius);max-width:460px;width:100%;max-height:85vh;overflow-y:auto;padding:1.75rem;position:relative;}
+.modal-close{position:absolute;top:1rem;right:1rem;width:32px;height:32px;color:var(--muted);}
+.modal-box h3{color:var(--indigo);margin-bottom:1rem;}
+.modal-box ul{margin:0 0 1rem;}
+.modal-box ul li{display:flex;gap:.5rem;margin-bottom:.5rem;font-size:.95rem;}
+.modal-box ul li .icon{width:18px;height:18px;color:var(--banyan);margin-top:.2rem;}
+.modal-note{font-size:.85rem;color:var(--muted);border-top:1px solid var(--border);padding-top:.85rem;}
+
+.lightbox-box{background:var(--paper);border-radius:var(--radius);max-width:420px;width:100%;padding:2rem;text-align:center;position:relative;}
+.lightbox-tile{width:100%;aspect-ratio:4/3;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;}
+.lightbox-tile .icon{width:56px;height:56px;color:var(--paper);}
+
+/* ============ NOTICES ============ */
+.notice-search{position:relative;max-width:420px;margin:0 auto 2rem;}
+.notice-search input{width:100%;padding:.8rem 1rem .8rem 2.8rem;border:1.5px solid var(--border);border-radius:999px;background:var(--paper);}
+.notice-search .icon{position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:var(--muted);width:20px;height:20px;}
+.notice-list li{display:flex;gap:1rem;align-items:flex-start;padding:1.1rem 0;border-bottom:1px solid var(--border);}
+.notice-list li:last-child{border-bottom:none;}
+.notice-date{font-family:var(--font-data);font-weight:600;color:var(--indigo);min-width:112px;font-size:.92rem;}
+.notice-title{flex:1;}
+.notice-list li.hide{display:none;}
+
+/* ============ GALLERY ============ */
+.gallery-tile{border-radius:var(--radius);aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;color:var(--paper);text-align:center;padding:1rem;transition:transform .18s ease;}
+.gallery-tile:hover{transform:translateY(-4px) scale(1.02);}
+.gallery-tile .icon{color:var(--paper);width:32px;height:32px;}
+.gallery-tile span{font-size:.85rem;font-weight:600;}
+.g1{background:linear-gradient(160deg,#2E3F6B,#1E2A52);}
+.g2{background:linear-gradient(160deg,#4A6B45,#33502F);}
+.g3{background:linear-gradient(160deg,#C9772F,#A8431F);}
+.g4{background:linear-gradient(160deg,#4C4438,#2A2420);}
+.g5{background:linear-gradient(160deg,#2F6B63,#1E4A44);}
+.g6{background:linear-gradient(160deg,#4A6B45,#2E4229);}
+.g7{background:linear-gradient(160deg,#3B5A8A,#22375C);}
+.g8{background:linear-gradient(160deg,#D2A23C,#BE7616);}
+
+/* ============ DOWNLOADS ============ */
+.dl-list li{display:flex;align-items:center;gap:.9rem;padding:1rem 1.25rem;background:var(--paper);border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:.75rem;}
+.dl-list .icon{color:var(--mitti);}
+.dl-list a{margin-left:auto;font-weight:600;color:var(--indigo);font-size:.9rem;white-space:nowrap;}
+.dl-list a:hover{color:var(--mitti);}
+
+/* ============ GRIEVANCE FORM ============ */
+.form-card{max-width:640px;margin:0 auto;background:var(--paper);border-radius:var(--radius);box-shadow:var(--shadow);padding:2rem;}
+.form-row{margin-bottom:1.25rem;}
+.form-row label{display:block;font-weight:600;font-size:.9rem;margin-bottom:.4rem;color:var(--indigo);}
+.form-row input,.form-row select,.form-row textarea{width:100%;padding:.75rem .9rem;border:1.5px solid var(--border);border-radius:var(--radius-sm);background:var(--linen);}
+.form-row input:focus,.form-row select:focus,.form-row textarea:focus{background:var(--paper);}
+.form-grid-2{display:grid;gap:1.25rem;grid-template-columns:1fr;}
+@media(min-width:560px){.form-grid-2{grid-template-columns:1fr 1fr;}}
+.form-success{display:none;background:#E8F0E4;border:1px solid var(--banyan);color:var(--banyan);padding:1rem 1.25rem;border-radius:var(--radius-sm);margin-top:1rem;font-weight:600;}
+.form-success.show{display:block;}
+
+/* ============ CONTACT ============ */
+.contact-grid{display:grid;gap:2rem;grid-template-columns:1fr;}
+@media(min-width:900px){.contact-grid{grid-template-columns:1fr 1fr;}}
+.contact-info li{display:flex;gap:.8rem;margin-bottom:1rem;}
+.contact-info .icon{color:var(--indigo);margin-top:.1rem;}
+.emergency-box{background:var(--paper);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-top:1.5rem;}
+.emergency-box h3{color:var(--mitti);margin-bottom:1rem;}
+.emergency-grid{display:grid;grid-template-columns:1fr auto;gap:.6rem 1rem;font-size:.95rem;}
+.emergency-grid .num{font-family:var(--font-data);font-weight:700;color:var(--mitti);}
+.map-wrap{border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow-sm);}
+.map-wrap iframe{width:100%;height:100%;min-height:320px;border:0;display:block;}
+
+/* ============ FOOTER ============ */
+.site-footer{background:var(--indigo-dark);color:#C9C2AF;padding:4rem 0 0;}
+.footer-grid{display:grid;gap:2.5rem;grid-template-columns:1fr;margin-bottom:3rem;}
+@media(min-width:720px){.footer-grid{grid-template-columns:1.3fr 1fr 1fr 1fr;}}
+.footer-grid h4{color:var(--paper);font-family:var(--font-body);font-size:1rem;margin-bottom:1rem;}
+.footer-grid li{margin-bottom:.55rem;font-size:.92rem;}
+.footer-grid a:hover{color:var(--turmeric);}
+.footer-brand p{color:#B8AF9C;font-size:.92rem;max-width:280px;}
+.social-pills{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.5rem;}
+.social-pills a{border:1px solid rgba(201,194,175,.35);padding:.4rem .9rem;border-radius:999px;font-size:.82rem;}
+.social-pills a:hover{border-color:var(--turmeric);color:var(--turmeric);}
+.footer-bottom{border-top:1px solid rgba(201,194,175,.18);padding:1.5rem 0;text-align:center;font-size:.85rem;position:relative;}
+.roots{display:flex;justify-content:center;gap:10px;margin-bottom:.75rem;opacity:.5;}
+.roots span{width:1px;background:var(--turmeric);}
+
+/* ============ BACK TO TOP ============ */
+.back-to-top{position:fixed;bottom:1.5rem;right:1.5rem;width:46px;height:46px;border-radius:50%;background:var(--indigo);color:var(--paper);display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:opacity .25s ease,transform .18s ease;z-index:500;}
+.back-to-top.show{opacity:1;pointer-events:auto;}
+.back-to-top:hover{transform:translateY(-3px);background:var(--indigo-dark);}
+
+@media(max-width:640px){
+  .section{padding:3rem 0;}
+  .form-card{padding:1.5rem;}
+}
+</style>
 </head>
-<body class="bg-slate-100 font-sans text-slate-800">
+<body>
 
-    <!-- Top Emergency & Helpline Bar -->
-    <div class="bg-blue-950 text-slate-200 text-xs py-2 px-4 border-b border-blue-900">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
-            <div class="flex flex-wrap items-center gap-4">
-                <span class="flex items-center gap-1.5"><i class="fa-solid fa-phone text-orange-400"></i> Emergency: 112 / 108</span>
-                <span class="hidden sm:inline text-slate-600">|</span>
-                <span class="flex items-center gap-1.5"><i class="fa-solid fa-user-shield text-emerald-400"></i> Sachiv: +91 98XXXXXXXX</span>
-                <span class="hidden sm:inline text-slate-600">|</span>
-                <span class="flex items-center gap-1.5"><i class="fa-solid fa-envelope text-orange-400"></i> dhabli.panchayat@mp.gov.in</span>
-            </div>
-            <div class="flex items-center gap-3">
-                <span class="bg-emerald-600 text-white px-2 py-0.5 rounded text-[10px] font-bold tracking-wider uppercase">Digital Panchayat</span>
-                <span class="text-slate-300">Madhya Pradesh Sarkar</span>
-            </div>
+<a href="#main" class="skip-link">मुख्य सामग्री पर जाएं / Skip to content</a>
+
+<!-- ===== TOPBAR ===== -->
+<div class="topbar">
+  <div class="container">
+    <span class="topbar-tag">डिजिटल पंचायत सेवा · अंतिम अद्यतन: 28 जुलाई 2026</span>
+    <div class="font-controls" aria-label="फॉन्ट आकार बदलें">
+      <button type="button" id="fontDec" aria-label="फॉन्ट छोटा करें">A-</button>
+      <button type="button" id="fontReset" aria-label="फॉन्ट सामान्य करें">A</button>
+      <button type="button" id="fontInc" aria-label="फॉन्ट बड़ा करें">A+</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== HEADER / NAV ===== -->
+<header class="site-header" id="siteHeader">
+  <div class="container nav-row">
+    <div class="brand">
+      <svg class="icon icon-lg" viewBox="0 0 48 48" aria-hidden="true" style="color:var(--turmeric)">
+        <ellipse cx="17" cy="17" rx="10" ry="8"/>
+        <ellipse cx="30" cy="19" rx="9" ry="7"/>
+        <line x1="19" y1="24" x2="18" y2="34"/>
+        <line x1="27" y1="25" x2="28" y2="34"/>
+      </svg>
+      <span class="brand-name">आदर्श ग्राम पंचायत<small>ADARSH GRAM PANCHAYAT</small></span>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="मेनू खोलें" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav-menu" id="navMenu">
+      <a href="#home">होम</a>
+      <a href="#about">हमारे बारे में</a>
+      <a href="#members">पदाधिकारी</a>
+      <a href="#services">सेवाएं</a>
+      <a href="#schemes">योजनाएं</a>
+      <a href="#notices">सूचनाएं</a>
+      <a href="#gallery">गैलरी</a>
+      <a href="#contact">संपर्क</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ===== HERO ===== -->
+<section id="home" class="hero">
+  <div class="canopy-wrap" aria-hidden="true">
+    <svg class="canopy" viewBox="0 0 1200 150" preserveAspectRatio="none">
+      <g class="canopy-leaf">
+        <ellipse cx="90" cy="20" rx="140" ry="55" fill="#33502F" opacity=".9"/>
+        <ellipse cx="280" cy="5" rx="150" ry="50" fill="#4A6B45" opacity=".85"/>
+        <ellipse cx="480" cy="25" rx="160" ry="58" fill="#33502F" opacity=".9"/>
+        <ellipse cx="690" cy="0" rx="150" ry="48" fill="#4A6B45" opacity=".85"/>
+        <ellipse cx="890" cy="22" rx="155" ry="55" fill="#33502F" opacity=".9"/>
+        <ellipse cx="1090" cy="8" rx="140" ry="50" fill="#4A6B45" opacity=".85"/>
+        <line x1="140" y1="55" x2="130" y2="105" stroke="#4A6B45" stroke-width="2"/>
+        <line x1="320" y1="48" x2="335" y2="100" stroke="#4A6B45" stroke-width="2"/>
+        <line x1="520" y1="60" x2="505" y2="115" stroke="#33502F" stroke-width="2"/>
+        <line x1="720" y1="42" x2="735" y2="95" stroke="#4A6B45" stroke-width="2"/>
+        <line x1="930" y1="58" x2="915" y2="110" stroke="#33502F" stroke-width="2"/>
+      </g>
+    </svg>
+  </div>
+  <div class="container hero-inner">
+    <div class="hero-eng">ADARSH GRAM PANCHAYAT · आधिकारिक वेबसाइट</div>
+    <h1>आदर्श ग्राम पंचायत में आपका स्वागत है</h1>
+    <p class="hero-tagline">"जहाँ आज भी चौपाल की छाँव में फैसले लिए जाते हैं"</p>
+    <p class="hero-sub">पंचायत की सेवाएं, सरकारी योजनाएं, सूचनाएं और शिकायत निवारण — अब सब कुछ आपकी उंगलियों पर।</p>
+    <div class="hero-actions">
+      <a href="#services" class="btn btn-primary">सेवाएं देखें</a>
+      <a href="#grievance" class="btn btn-outline">शिकायत दर्ज करें</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STATS ===== -->
+<section class="stats">
+  <div class="container stats-grid">
+    <div class="stat"><div class="stat-num" data-target="8500" data-suffix="+">0</div><div class="stat-label">जनसंख्या · Population</div></div>
+    <div class="stat"><div class="stat-num" data-target="1650" data-suffix="+">0</div><div class="stat-label">परिवार · Households</div></div>
+    <div class="stat"><div class="stat-num" data-target="8" data-suffix="">0</div><div class="stat-label">वार्ड · Wards</div></div>
+    <div class="stat"><div class="stat-num" data-target="76" data-suffix="%">0</div><div class="stat-label">साक्षरता दर · Literacy</div></div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about" class="section section-khadi">
+  <div class="container">
+    <div class="grid-2">
+      <div class="about-text">
+        <span class="stamp">परिचय · ABOUT</span>
+        <h2>हमारी पंचायत की कहानी</h2>
+        <p>आदर्श ग्राम पंचायत सदियों पुरानी पंचायती परंपरा और आज की डिजिटल सेवाओं के बीच का सेतु है। यहाँ की चौपाल कभी गाँव के हर फैसले की गवाह रही है, और आज भी पंचायत उसी भावना से गाँव के विकास, स्वच्छता और सुशासन के लिए कार्य करती है।</p>
+        <p><strong>दृष्टिकोण:</strong> स्वच्छ, आत्मनिर्भर और डिजिटल रूप से सशक्त ग्राम पंचायत का निर्माण।</p>
+        <ul class="mission-list">
+          <li><svg class="icon" viewBox="0 0 48 48"><rect x="20" y="12" width="8" height="24"/><rect x="12" y="20" width="24" height="8"/></svg> पारदर्शी एवं जवाबदेह शासन</li>
+          <li><svg class="icon" viewBox="0 0 48 48"><path d="M12 22 24 10l12 12"/><rect x="16" y="22" width="16" height="14"/></svg> बुनियादी ढांचे का सतत विकास</li>
+          <li><svg class="icon" viewBox="0 0 48 48"><line x1="14" y1="20" x2="18" y2="24"/><line x1="18" y1="24" x2="22" y2="20"/><line x1="22" y1="20" x2="26" y2="24"/><line x1="26" y1="24" x2="30" y2="20"/><line x1="30" y1="20" x2="34" y2="24"/></svg> हर घर तक स्वच्छ जल एवं स्वच्छता</li>
+          <li><svg class="icon" viewBox="0 0 48 48"><circle cx="19" cy="24" r="9"/><circle cx="29" cy="24" r="9"/></svg> महिला एवं बाल कल्याण</li>
+        </ul>
+
+        <div class="card sarpanch-card">
+          <div class="avatar">र</div>
+          <div>
+            <blockquote>"हमारा प्रयास है कि हर गाँववासी को बिना किसी परेशानी के पंचायत की सेवाएं मिलें। आपका सहयोग ही हमारी सबसे बड़ी ताकत है।"</blockquote>
+            <cite>— श्री रमेश कुमार, सरपंच (सरपंच का संदेश)</cite>
+          </div>
         </div>
+      </div>
+
+      <div class="card facts-card">
+        <h3 style="margin-bottom:1rem;">पंचायत परिचय संक्षेप में</h3>
+        <dl>
+          <dt>स्थापना वर्ष</dt><dd>1952</dd>
+          <dt>जिला</dt><dd>उदाहरण जिला</dd>
+          <dt>राज्य</dt><dd>उदाहरण राज्य</dd>
+          <dt>क्षेत्रफल</dt><dd>12.5 वर्ग किमी</dd>
+          <dt>पिन कोड</dt><dd>000000</dd>
+        </dl>
+        <p class="placeholder-note" style="margin-top:1rem;">यह सभी जानकारी उदाहरण है — अपनी पंचायत की वास्तविक जानकारी से बदलें।</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MEMBERS ===== -->
+<section id="members" class="section section-linen">
+  <div class="container">
+    <div class="section-head">
+      <span class="stamp">पदाधिकारी · MEMBERS</span>
+      <h2>पंचायत पदाधिकारी</h2>
+      <p>ग्राम पंचायत के प्रमुख पदाधिकारियों की सूची एवं संपर्क विवरण</p>
+    </div>
+    <div class="grid grid-auto" style="margin-bottom:3rem;">
+      <div class="card member-card">
+        <div class="avatar">र</div>
+        <h3>श्री रमेश कुमार</h3>
+        <div class="member-role">सरपंच / Sarpanch</div>
+        <div class="member-phone">+91-XXXXXXXXXX</div>
+      </div>
+      <div class="card member-card">
+        <div class="avatar">सु</div>
+        <h3>श्रीमती सुनीता देवी</h3>
+        <div class="member-role">उप-सरपंच / Up-Sarpanch</div>
+        <div class="member-phone">+91-XXXXXXXXXX</div>
+      </div>
+      <div class="card member-card">
+        <div class="avatar">वि</div>
+        <h3>श्री विजय सिंह</h3>
+        <div class="member-role">ग्राम सचिव / Secretary</div>
+        <div class="member-phone">+91-XXXXXXXXXX</div>
+      </div>
+      <div class="card member-card">
+        <div class="avatar">अ</div>
+        <h3>श्री अनिल यादव</h3>
+        <div class="member-role">पंचायत सहायक / Assistant</div>
+        <div class="member-phone">+91-XXXXXXXXXX</div>
+      </div>
     </div>
 
-    <!-- Header Navigation Bar -->
-    <header class="bg-white shadow-md sticky top-0 z-50">
-        <div class="h-1.5 w-full bg-gradient-to-r from-orange-500 via-white to-emerald-600"></div>
-        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-12 h-12 bg-blue-900 text-white rounded-xl flex items-center justify-center font-bold text-2xl shadow-sm">
-                    <i class="fa-solid fa-building-columns"></i>
-                </div>
-                <div>
-                    <h1 class="text-lg sm:text-2xl font-black text-blue-950 tracking-tight leading-none">ग्राम पंचायत ढाबली</h1>
-                    <p class="text-[11px] sm:text-xs text-slate-500 font-medium mt-1">Gram Panchayat Dhabli • Official Portal</p>
-                </div>
-            </div>
-            <nav class="hidden lg:flex items-center gap-6 font-bold text-xs uppercase tracking-wider text-slate-700">
-                <a href="#" class="text-blue-900 hover:text-orange-600 transition">Home</a>
-                <a href="#services" class="hover:text-orange-600 transition">Sevaayein</a>
-                <a href="#vikkas" class="hover:text-orange-600 transition">Vikas Karya</a>
-                <a href="#gallery" class="hover:text-orange-600 transition">Gaon Gallery</a>
-                <a href="#leadership" class="hover:text-orange-600 transition">Netruva</a>
-                <a href="#complain" class="hover:text-orange-600 transition">Shikayat Box</a>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Main Banner with Background Image -->
-    <section class="relative bg-blue-950 text-white py-20 px-4 overflow-hidden">
-        <!-- Background Image with Dark Overlay -->
-        <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1599809275671-b5942cabc3a2?auto=format&fit=crop&w=1600&q=80" alt="Village Background" class="w-full h-full object-cover opacity-25">
-            <div class="absolute inset-0 bg-gradient-to-r from-blue-950 via-blue-950/90 to-slate-900/80"></div>
-        </div>
-
-        <div class="relative z-10 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-            <div class="md:col-span-8 space-y-4">
-                <span class="bg-orange-500/20 text-orange-300 border border-orange-500/30 text-xs px-3 py-1 rounded-full font-bold uppercase tracking-widest inline-block">
-                    Digital Village Initiative - 2026
-                </span>
-                <h2 class="text-3xl sm:text-5xl font-black leading-tight tracking-tight">
-                    Sashakt Gaon, Samriddh Nagrik <br>
-                    <span class="text-orange-400 font-extrabold text-2xl sm:text-4xl">Gram Panchayat Dhabli Mein Aapka Swagat Hai</span>
-                </h2>
-                <p class="text-sm text-slate-300 max-w-2xl leading-relaxed">
-                    Gaon ke har parivar tak sarkari yojanaon ka laabh, pardarshita, aur vikas karyon ki satya jaankari online pahunchane ka digital manch.
-                </p>
-                <div class="pt-2 flex flex-wrap gap-3">
-                    <a href="#services" class="bg-orange-600 hover:bg-orange-700 text-white font-bold px-6 py-3 rounded-lg text-xs tracking-wider uppercase transition shadow-lg">
-                        <i class="fa-solid fa-list-check mr-2"></i> Sabhi Sevaayein
-                    </a>
-                    <a href="#complain" class="bg-white/10 hover:bg-white/20 text-white border border-white/30 font-bold px-6 py-3 rounded-lg text-xs tracking-wider uppercase transition">
-                        <i class="fa-solid fa-pen-to-square mr-2"></i> Shikayat Darj Karein
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Quick Notice Board Card -->
-            <div class="md:col-span-4 bg-white/10 backdrop-blur-md border border-white/15 p-5 rounded-2xl space-y-4 shadow-xl">
-                <h3 class="text-sm font-bold text-orange-400 uppercase tracking-wider border-b border-white/10 pb-2 flex items-center justify-between">
-                    <span><i class="fa-solid fa-bell mr-2"></i> Taaza Suchna</span>
-                    <span class="text-[10px] bg-red-600 text-white px-2 py-0.5 rounded animate-pulse">Live</span>
-                </h3>
-                <ul class="text-xs space-y-3 text-slate-200">
-                    <li class="border-b border-white/5 pb-2">
-                        <span class="text-orange-300 font-semibold">1. Gram Sabha Baithak:</span> Aagam 10 tarikh ko Panchayat Bhavan mein baithak.
-                    </li>
-                    <li class="border-b border-white/5 pb-2">
-                        <span class="text-orange-300 font-semibold">2. Awas Yojna List:</span> PM Awas ki navintam kist jari kar di gayi hai.
-                    </li>
-                    <li>
-                        <span class="text-orange-300 font-semibold">3. Swachhata Abhiyan:</span> Ravivar ko vishesh safai abhiyan.
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- News Ticker -->
-    <div class="bg-orange-500 text-slate-950 font-bold text-xs py-2 px-4 flex items-center gap-3 shadow-inner">
-        <span class="bg-slate-950 text-white text-[10px] px-2.5 py-1 rounded uppercase shrink-0">Updates</span>
-        <marquee scrollamount="6" class="tracking-wide">
-            📢 Gram Panchayat Dhabli: Jal Jeevan Mission ke tehat nayi pipeline ka kaam pragati par hai. | Kisaan kripya apni e-KYC panchayat karyalay mein karwayein.
-        </marquee>
+    <h3 style="margin-bottom:1rem;">वार्ड पंच सूची / Ward Panch List</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>वार्ड</th><th>नाम</th><th>मोबाइल नंबर</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>श्री सुरेश पटेल</td><td>+91-XXXXXXXXXX</td></tr>
+          <tr><td>2</td><td>श्रीमती गीता शर्मा</td><td>+91-XXXXXXXXXX</td></tr>
+          <tr><td>3</td><td>श्री महेश वर्मा</td><td>+91-XXXXXXXXXX</td></tr>
+          <tr><td>4</td><td>श्रीमती कमला बाई</td><td>+91-XXXXXXXXXX</td></tr>
+          <tr><td>5</td><td>श्री दिनेश सोनी</td><td>+91-XXXXXXXXXX</td></tr>
+          <tr><td>6</td><td>श्रीमती राधा देवी</td><td>+91-XXXXXXXXXX</td></tr>
+          <tr><td>7</td><td>श्री संजय चौहान</td><td>+91-XXXXXXXXXX</td></tr>
+          <tr><td>8</td><td>श्रीमती पूजा गुप्ता</td><td>+91-XXXXXXXXXX</td></tr>
+        </tbody>
+      </table>
     </div>
+  </div>
+</section>
 
-    <!-- Quick Services Grid -->
-    <section class="py-14 px-4 max-w-7xl mx-auto" id="services">
-        <div class="text-center max-w-2xl mx-auto mb-10 space-y-1">
-            <h3 class="text-2xl sm:text-3xl font-black text-blue-950">Nagrik Sevaayein & Suvidhayein</h3>
-            <p class="text-xs text-slate-500">Panchayat dwara pradan ki jaane wali digital evam prashashnik sevaayein</p>
+<!-- ===== DEVELOPMENT WORKS ===== -->
+<section id="works" class="section section-khadi">
+  <div class="container">
+    <div class="section-head">
+      <span class="stamp">विकास · PROGRESS</span>
+      <h2>विकास कार्य</h2>
+      <p>पंचायत क्षेत्र में चल रहे एवं पूर्ण हो चुके विकास कार्यों का विवरण (पारदर्शिता हेतु)</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>कार्य</th><th>स्थिति</th><th>बजट</th><th>तिथि</th></tr></thead>
+        <tbody>
+          <tr><td>मुख्य सड़क का निर्माण</td><td><span class="badge badge-done">पूर्ण</span></td><td>₹15,00,000</td><td>मार्च 2026</td></tr>
+          <tr><td>पेयजल पाइपलाइन विस्तार</td><td><span class="badge badge-progress">प्रगति पर</span></td><td>₹8,50,000</td><td>अनु. दिसंबर 2026</td></tr>
+          <tr><td>सामुदायिक भवन निर्माण</td><td><span class="badge badge-progress">प्रगति पर</span></td><td>₹12,00,000</td><td>अनु. फरवरी 2027</td></tr>
+          <tr><td>सोलर स्ट्रीट लाइट (50 यूनिट)</td><td><span class="badge badge-done">पूर्ण</span></td><td>₹4,50,000</td><td>जनवरी 2026</td></tr>
+          <tr><td>आंगनवाड़ी भवन मरम्मत</td><td><span class="badge badge-proposed">प्रस्तावित</span></td><td>₹3,00,000</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section id="services" class="section section-linen">
+  <div class="container">
+    <div class="section-head">
+      <span class="stamp">सेवाएं · SERVICES</span>
+      <h2>नागरिक सेवाएं</h2>
+      <p>प्रमाण पत्र एवं अन्य पंचायत सेवाओं के लिए आवश्यक दस्तावेज़ यहाँ देखें</p>
+    </div>
+    <div class="grid grid-auto-sm" id="servicesGrid">
+      <!-- cards injected via data attributes; documents shown in modal -->
+      <div class="card svc-card" data-service="birth">
+        <svg class="icon icon-lg" viewBox="0 0 48 48"><line x1="24" y1="36" x2="24" y2="20"/><line x1="24" y1="20" x2="17" y2="27"/><line x1="24" y1="20" x2="31" y2="27"/></svg>
+        <h3>जन्म प्रमाण पत्र</h3><div class="svc-eng">Birth Certificate</div>
+        <button class="btn btn-solid btn-sm btn-block svc-btn">आवश्यक दस्तावेज़ देखें</button>
+      </div>
+      <div class="card svc-card" data-service="death">
+        <svg class="icon icon-lg" viewBox="0 0 48 48"><rect x="18" y="18" width="12" height="12" transform="rotate(45 24 24)"/><line x1="16" y1="34" x2="32" y2="34"/></svg>
+        <h3>मृत्यु प्रमाण पत्र</h3><div class="svc-eng">Death Certificate</div>
+        <button class="btn btn-solid btn-sm btn-block svc-btn">आवश्यक दस्तावेज़ देखें</button>
+      </div>
+      <div class="card svc-card" data-service="income">
+        <svg class="icon icon-lg" viewBox="0 0 48 48"><circle cx="24" cy="24" r="12"/><line x1="24" y1="16" x2="24" y2="32"/><line x1="19" y1="20" x2="29" y2="20"/></svg>
+        <h3>आय प्रमाण पत्र</h3><div class="svc-eng">Income Certificate</div>
+        <button class="btn btn-solid btn-sm btn-block svc-btn">आवश्यक दस्तावेज़ देखें</button>
+      </div>
+      <div class="card svc-card" data-service="caste">
+        <svg class="icon icon-lg" viewBox="0 0 48 48"><rect x="14" y="10" width="20" height="26"/><line x1="18" y1="18" x2="30" y2="18"/><line x1="18" y1="24" x2="30" y2="24"/><line x1="18" y1="30" x2="26" y2="30"/></svg>
+        <h3>जाति प्रमाण पत्र</h3><div class="svc-eng">Caste Certificate</div>
+        <button class="btn btn-solid btn-sm btn-block svc-btn">आवश्यक दस्तावेज़ देखें</button>
+      </div>
+      <div class="card svc-card" data-service="residence">
+        <svg class="icon icon-lg" viewBox="0 0 48 48"><rect x="14" y="10" width="20" height="26"/><line x1="18" y1="18" x2="30" y2="18"/><line x1="18" y1="24" x2="30" y2="24"/><line x1="18" y1="30" x2="26" y2="30"/></svg>
+        <h3>निवास प्रमाण पत्र</h3><div class="svc-eng">Residence Certificate</div>
+        <button class="btn btn-solid btn-sm btn-block svc-btn">आवश्यक दस्तावेज़ देखें</button>
+      </div>
+      <div class="card svc-card" data-service="propertytax">
+        <svg class="icon icon-lg" viewBox="0 0 48 48"><path d="M12 22 24 10l12 12"/><rect x="16" y="22" width="16" height="14"/><rect x="21" y="28" width="6" height="8"/></svg>
+        <h3>संपत्ति कर</h3><div class="svc-eng">Property Tax</div>
+        <button class="btn btn-solid btn-sm btn-block svc-btn">आवश्यक दस्तावेज़ देखें</button>
+      </div>
+      <div class="card svc-card" data-service="water">
+        <svg class="icon icon-lg" viewBox="0 0 48 48"><line x1="14" y1="20" x2="18" y2="24"/><line x1="18" y1="24" x2="22" y2="20"/><line x1="22" y1="20" x2="26" y2="24"/><line x1="26" y1="24" x2="30" y2="20"/><line x1="30" y1="20" x2="34" y2="24"/></svg>
+        <h3>जल संयोजन</h3><div class="svc-eng">Water Connection</div>
+        <button class="btn btn-solid btn-sm btn-block svc-btn">आवश्यक दस्तावेज़ देखें</button>
+      </div>
+      <div class="card svc-card" data-service="marriage">
+        <svg class="icon icon-lg" viewBox="0 0 48 48"><circle cx="19" cy="24" r="9"/><circle cx="29" cy="24" r="9"/></svg>
+        <h3>विवाह पंजीकरण</h3><div class="svc-eng">Marriage Registration</div>
+        <button class="btn btn-solid btn-sm btn-block svc-btn">आवश्यक दस्तावेज़ देखें</button>
+      </div>
+      <div class="card svc-card" data-service="trade">
+        <svg class="icon icon-lg" viewBox="0 0 48 48"><rect x="12" y="22" width="24" height="14"/><path d="M10 22 16 14 22 22 28 14 34 22"/><rect x="21" y="28" width="6" height="8"/></svg>
+        <h3>व्यापार लाइसेंस</h3><div class="svc-eng">Trade License</div>
+        <button class="btn btn-solid btn-sm btn-block svc-btn">आवश्यक दस्तावेज़ देखें</button>
+      </div>
+      <div class="card svc-card" data-service="building">
+        <svg class="icon icon-lg" viewBox="0 0 48 48"><path d="M12 36 12 14 34 14"/><line x1="16" y1="14" x2="16" y2="18"/><line x1="22" y1="14" x2="22" y2="18"/></svg>
+        <h3>भवन निर्माण अनुमति</h3><div class="svc-eng">Building Permission</div>
+        <button class="btn btn-solid btn-sm btn-block svc-btn">आवश्यक दस्तावेज़ देखें</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="modal" id="serviceModal">
+  <div class="modal-box">
+    <button class="modal-close" id="closeServiceModal" aria-label="बंद करें">
+      <svg class="icon" viewBox="0 0 48 48"><line x1="12" y1="12" x2="28" y2="28"/><line x1="28" y1="12" x2="12" y2="28"/></svg>
+    </button>
+    <h3 id="modalTitle"></h3>
+    <ul id="modalDocs"></ul>
+    <p class="modal-note">अधिक जानकारी हेतु पंचायत कार्यालय में संपर्क करें। यह सूची सामान्य मार्गदर्शन हेतु है।</p>
+  </div>
+</div>
+
+<!-- ===== SCHEMES ===== -->
+<section id="schemes" class="section section-khadi">
+  <div class="container">
+    <div class="section-head">
+      <span class="stamp">योजनाएं · SCHEMES</span>
+      <h2>सरकारी योजनाएं</h2>
+      <p>ग्रामीणों के लिए उपलब्ध प्रमुख केंद्र सरकार की योजनाएं</p>
+    </div>
+    <div class="grid grid-auto">
+      <div class="card scheme-card">
+        <svg class="icon icon-lg" viewBox="0 0 48 48"><path d="M12 22 24 10l12 12"/><rect x="16" y="22" width="16" height="14"/><rect x="21" y="28" width="6" height="8"/></svg>
+        <h3>प्रधानमंत्री आवास योजना (ग्रामीण)</h3><div class="scheme-eng">PMAY-Gramin</div>
+        <p>बेघर एवं कच्चे मकानों में रहने वाले ग्रामीण परिवारों को पक्का घर उपलब्ध कराने हेतु।</p>
+        <a href="https://pmayg.nic.in" target="_blank" rel="noopener" class="btn btn-sm btn-outline" style="color:var(--indigo);border-color:var(--indigo);">आधिकारिक वेबसाइट पर जाएं</a>
+      </div>
+      <div class="card scheme-card">
+        <svg class="icon icon-lg" viewBox="0 0 48 48"><line x1="24" y1="10" x2="24" y2="28"/><path d="M17 28 31 28 27 38 21 38 Z"/></svg>
+        <h3>मनरेगा</h3><div class="scheme-eng">MGNREGA</div>
+        <p>ग्रामीण परिवारों को प्रति वर्ष 100 दिन के रोजगार की कानूनी गारंटी।</p>
+        <a href="https://nrega.nic.in" target="_blank" rel="noopener" class="btn btn-sm btn-outline" style="color:var(--indigo);border-color:var(--indigo);">आधिकारिक वेबसाइट पर जाएं</a>
+      </div>
+      <div class="card scheme-card">
+        <svg class="icon icon-lg" viewBox="0 0 48 48"><line x1="30" y1="10" x2="18" y2="30"/><line x1="18" y1="30" x2="12" y2="38"/><line x1="18" y1="30" x2="16" y2="39"/><line x1="18" y1="30" x2="21" y2="39"/><line x1="18" y1="30" x2="25" y2="37"/></svg>
+        <h3>स्वच्छ भारत मिशन</h3><div class="scheme-eng">Swachh Bharat Mission</div>
+        <p>गांवों को खुले में शौच मुक्त बनाना और स्वच्छता को बढ़ावा देना।</p>
+        <a href="https://swachhbharatmission.gov.in" target="_blank" rel="noopener" class="btn btn-sm btn-outline" style="color:var(--indigo);border-color:var(--indigo);">आधिकारिक वेबसाइट पर जाएं</a>
+      </div>
+      <div class="card scheme-card">
+        <svg class="icon icon-lg" viewBox="0 0 48 48"><rect x="14" y="34" width="20" height="4"/><rect x="19" y="18" width="10" height="10" transform="rotate(45 24 23)"/></svg>
+        <h3>प्रधानमंत्री उज्ज्वला योजना</h3><div class="scheme-eng">PM Ujjwala Yojana</div>
+        <p>गरीब परिवारों की महिलाओं को मुफ्त एलपीजी गैस कनेक्शन।</p>
+        <a href="https://pmuy.gov.in" target="_blank" rel="noopener" class="btn btn-sm btn-outline" style="color:var(--indigo);border-color:var(--indigo);">आधिकारिक वेबसाइट पर जाएं</a>
+      </div>
+      <div class="card scheme-card">
+        <svg class="icon icon-lg" viewBox="0 0 48 48"><rect x="20" y="12" width="8" height="24"/><rect x="12" y="20" width="24" height="8"/></svg>
+        <h3>आयुष्मान भारत (PM-JAY)</h3><div class="scheme-eng">Ayushman Bharat</div>
+        <p>प्रति परिवार प्रति वर्ष ₹5 लाख तक का मुफ्त स्वास्थ्य बीमा कवर।</p>
+        <a href="https://pmjay.gov.in" target="_blank" rel="noopener" class="btn btn-sm btn-outline" style="color:var(--indigo);border-color:var(--indigo);">आधिकारिक वेबसाइट पर जाएं</a>
+      </div>
+      <div class="card scheme-card">
+        <svg class="icon icon-lg" viewBox="0 0 48 48"><line x1="24" y1="38" x2="24" y2="14"/><line x1="24" y1="16" x2="18" y2="12"/><line x1="24" y1="16" x2="30" y2="12"/><line x1="24" y1="22" x2="18" y2="18"/><line x1="24" y1="22" x2="30" y2="18"/><line x1="24" y1="28" x2="18" y2="24"/><line x1="24" y1="28" x2="30" y2="24"/></svg>
+        <h3>पीएम किसान सम्मान निधि</h3><div class="scheme-eng">PM-KISAN</div>
+        <p>किसानों को प्रति वर्ष ₹6,000 की आर्थिक सहायता, 3 किस्तों में।</p>
+        <a href="https://pmkisan.gov.in" target="_blank" rel="noopener" class="btn btn-sm btn-outline" style="color:var(--indigo);border-color:var(--indigo);">आधिकारिक वेबसाइट पर जाएं</a>
+      </div>
+      <div class="card scheme-card">
+        <svg class="icon icon-lg" viewBox="0 0 48 48"><path d="M12 16 30 16"/><line x1="30" y1="16" x2="30" y2="22"/><line x1="24" y1="30" x2="24" y2="36"/><line x1="30" y1="30" x2="30" y2="38"/></svg>
+        <h3>जल जीवन मिशन</h3><div class="scheme-eng">Jal Jeevan Mission</div>
+        <p>हर ग्रामीण घर तक नल से स्वच्छ पेयजल पहुंचाने का लक्ष्य।</p>
+        <a href="https://jaljeevanmission.gov.in" target="_blank" rel="noopener" class="btn btn-sm btn-outline" style="color:var(--indigo);border-color:var(--indigo);">आधिकारिक वेबसाइट पर जाएं</a>
+      </div>
+    </div>
+    <p class="placeholder-note" style="text-align:center;margin-top:2rem;">योजनाओं की जानकारी एवं लिंक समय-समय पर बदल सकते हैं — प्रकाशित करने से पहले सत्यापित करें।</p>
+  </div>
+</section>
+
+<!-- ===== NOTICES ===== -->
+<section id="notices" class="section section-linen">
+  <div class="container">
+    <div class="section-head">
+      <span class="stamp">सूचना पट्ट · NOTICES</span>
+      <h2>सूचनाएं एवं घोषणाएं</h2>
+      <p>पंचायत की चौपाल — यहाँ नवीनतम सूचनाएं देखें</p>
+    </div>
+    <div class="notice-search">
+      <svg class="icon" viewBox="0 0 48 48"><circle cx="19" cy="19" r="8"/><line x1="25" y1="25" x2="33" y2="33"/></svg>
+      <input type="text" id="noticeSearch" placeholder="सूचना खोजें...">
+    </div>
+    <ul class="notice-list" id="noticeList">
+      <li><span class="notice-date">25 जुलाई 2026</span><span class="notice-title">ग्राम सभा की बैठक 5 अगस्त 2026 को पंचायत भवन में आयोजित होगी</span><span class="badge badge-new">नया</span></li>
+      <li><span class="notice-date">20 जुलाई 2026</span><span class="notice-title">स्वच्छता पखवाड़ा अभियान का आयोजन — सभी वार्डों में सहभागिता अनिवार्य</span><span class="badge badge-new">नया</span></li>
+      <li><span class="notice-date">10 जुलाई 2026</span><span class="notice-title">राशन कार्ड eKYC अपडेट कराने हेतु सूचना</span></li>
+      <li><span class="notice-date">28 जून 2026</span><span class="notice-title">प्रधानमंत्री आवास योजना हेतु आवेदन की अंतिम तिथि बढ़ाई गई</span></li>
+      <li><span class="notice-date">15 जून 2026</span><span class="notice-title">रखरखाव कार्य के कारण पेयजल आपूर्ति में अस्थायी व्यवधान</span></li>
+      <li><span class="notice-date">1 जून 2026</span><span class="notice-title">वित्तीय वर्ष 2026-27 हेतु संपत्ति कर भुगतान प्रारंभ</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== GALLERY ===== -->
+<section id="gallery" class="section section-khadi">
+  <div class="container">
+    <div class="section-head">
+      <span class="stamp">गैलरी · GALLERY</span>
+      <h2>गाँव की झलकियाँ</h2>
+      <p>चित्र पर क्लिक करके बड़ा देखें — असली फोटो जोड़ने के लिए कोड में बदलें</p>
+    </div>
+    <div class="grid grid-auto-sm">
+      <div class="gallery-tile g1" data-caption="पंचायत भवन · Panchayat Bhawan">
+        <svg class="icon icon-lg" viewBox="0 0 48 48"><path d="M12 22 24 10l12 12"/><rect x="16" y="22" width="16" height="14"/></svg><span>पंचायत भवन</span>
+      </div>
+      <div class="gallery-tile g2" data-caption="राजकीय प्राथमिक विद्यालय · Government Primary School">
+        <svg class="icon icon-lg" viewBox="0 0 48 48"><rect x="12" y="16" width="24" height="20"/><line x1="24" y1="16" x2="24" y2="10"/></svg><span>प्राथमिक विद्यालय</span>
+      </div>
+      <div class="gallery-tile g3" data-caption="सामुदायिक स्वास्थ्य केंद्र · Community Health Center">
+        <svg class="icon icon-lg" viewBox="0 0 48 48"><rect x="20" y="12" width="8" height="24"/><rect x="12" y="20" width="24" height="8"/></svg><span>स्वास्थ्य केंद्र</span>
+      </div>
+      <div class="gallery-tile g4" data-caption="मुख्य सड़क · Main Road">
+        <svg class="icon icon-lg" viewBox="0 0 48 48"><line x1="10" y1="38" x2="38" y2="38"/><line x1="24" y1="10" x2="24" y2="38"/></svg><span>मुख्य सड़क</span>
+      </div>
+      <div class="gallery-tile g5" data-caption="गाँव का तालाब · Village Pond">
+        <svg class="icon icon-lg" viewBox="0 0 48 48"><line x1="10" y1="24" x2="16" y2="20"/><line x1="16" y1="20" x2="22" y2="24"/><line x1="22" y1="24" x2="28" y2="20"/><line x1="28" y1="20" x2="34" y2="24"/><line x1="34" y1="24" x2="38" y2="20"/></svg><span>गाँव का तालाब</span>
+      </div>
+      <div class="gallery-tile g6" data-caption="वृक्षारोपण अभियान · Plantation Drive">
+        <svg class="icon icon-lg" viewBox="0 0 48 48"><line x1="24" y1="38" x2="24" y2="20"/><line x1="24" y1="20" x2="17" y2="27"/><line x1="24" y1="20" x2="31" y2="27"/></svg><span>वृक्षारोपण</span>
+      </div>
+      <div class="gallery-tile g7" data-caption="पेयजल टंकी · Water Tank">
+        <svg class="icon icon-lg" viewBox="0 0 48 48"><rect x="14" y="16" width="20" height="16"/><line x1="24" y1="32" x2="24" y2="38"/></svg><span>पेयजल टंकी</span>
+      </div>
+      <div class="gallery-tile g8" data-caption="सांस्कृतिक कार्यक्रम · Cultural Event">
+        <svg class="icon icon-lg" viewBox="0 0 48 48"><circle cx="24" cy="16" r="6"/><path d="M12 38c0-8 5-14 12-14s12 6 12 14"/></svg><span>सांस्कृतिक कार्यक्रम</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="modal" id="lightbox">
+  <div class="lightbox-box">
+    <button class="modal-close" id="closeLightbox" aria-label="बंद करें">
+      <svg class="icon" viewBox="0 0 48 48"><line x1="12" y1="12" x2="28" y2="28"/><line x1="28" y1="12" x2="12" y2="28"/></svg>
+    </button>
+    <div class="lightbox-tile g1" id="lightboxTile">
+      <svg class="icon" viewBox="0 0 48 48"><circle cx="24" cy="24" r="18"/></svg>
+    </div>
+    <p id="lightboxCaption" style="font-weight:600;"></p>
+    <p class="placeholder-note">यह एक नमूना चित्र है — असली फोटो के लिए यहाँ &lt;img&gt; टैग जोड़ें।</p>
+  </div>
+</div>
+
+<!-- ===== DOWNLOADS ===== -->
+<section id="downloads" class="section section-linen">
+  <div class="container">
+    <div class="section-head">
+      <span class="stamp">डाउनलोड · FORMS</span>
+      <h2>फॉर्म एवं दस्तावेज़</h2>
+      <p>आवश्यक आवेदन फॉर्म यहाँ से डाउनलोड करें</p>
+    </div>
+    <ul class="dl-list" style="max-width:680px;margin:0 auto;">
+      <li><svg class="icon" viewBox="0 0 48 48"><rect x="14" y="8" width="20" height="26"/><line x1="18" y1="16" x2="30" y2="16"/><line x1="18" y1="22" x2="30" y2="22"/></svg> जन्म प्रमाण पत्र आवेदन फॉर्म <a href="#">डाउनलोड (PDF)</a></li>
+      <li><svg class="icon" viewBox="0 0 48 48"><rect x="14" y="8" width="20" height="26"/><line x1="18" y1="16" x2="30" y2="16"/><line x1="18" y1="22" x2="30" y2="22"/></svg> मृत्यु प्रमाण पत्र आवेदन फॉर्म <a href="#">डाउनलोड (PDF)</a></li>
+      <li><svg class="icon" viewBox="0 0 48 48"><rect x="14" y="8" width="20" height="26"/><line x1="18" y1="16" x2="30" y2="16"/><line x1="18" y1="22" x2="30" y2="22"/></svg> आय / जाति / निवास प्रमाण पत्र फॉर्म <a href="#">डाउनलोड (PDF)</a></li>
+      <li><svg class="icon" viewBox="0 0 48 48"><rect x="14" y="8" width="20" height="26"/><line x1="18" y1="16" x2="30" y2="16"/><line x1="18" y1="22" x2="30" y2="22"/></svg> संपत्ति कर भुगतान फॉर्म <a href="#">डाउनलोड (PDF)</a></li>
+      <li><svg class="icon" viewBox="0 0 48 48"><rect x="14" y="8" width="20" height="26"/><line x1="18" y1="16" x2="30" y2="16"/><line x1="18" y1="22" x2="30" y2="22"/></svg> सूचना का अधिकार (RTI) आवेदन फॉर्म <a href="#">डाउनलोड (PDF)</a></li>
+      <li><svg class="icon" viewBox="0 0 48 48"><rect x="14" y="8" width="20" height="26"/><line x1="18" y1="16" x2="30" y2="16"/><line x1="18" y1="22" x2="30" y2="22"/></svg> शिकायत फॉर्म (ऑफलाइन) <a href="#">डाउनलोड (PDF)</a></li>
+    </ul>
+    <p class="placeholder-note" style="text-align:center;margin-top:1.5rem;">वास्तविक PDF फाइलों के लिंक यहाँ जोड़ें (href="#" को बदलें)।</p>
+  </div>
+</section>
+
+<!-- ===== GRIEVANCE ===== -->
+<section id="grievance" class="section section-wash">
+  <div class="container">
+    <div class="section-head">
+      <span class="stamp">शिकायत · GRIEVANCE</span>
+      <h2 style="color:var(--indigo);">शिकायत दर्ज करें</h2>
+      <p style="color:var(--ink);">अपनी समस्या हमें बताएं, हम जल्द समाधान का प्रयास करेंगे</p>
+    </div>
+    <form class="form-card" id="grievanceForm">
+      <div class="form-grid-2">
+        <div class="form-row">
+          <label for="gName">नाम</label>
+          <input type="text" id="gName" required>
         </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
-                <div class="w-12 h-12 bg-blue-50 text-blue-900 rounded-xl flex items-center justify-center text-xl font-bold mb-4">
-                    <i class="fa-solid fa-house-user"></i>
-                </div>
-                <h4 class="font-bold text-base text-blue-950 mb-1">PM Awas Yojna</h4>
-                <p class="text-xs text-slate-500 leading-relaxed mb-4">Labharthiyo ki suchi, kist ki sthiti, aur aavedan ki jaankari.</p>
-                <a href="#contact" class="text-xs font-bold text-orange-600 flex items-center gap-1 hover:underline">Jaankari Prapt Karein <i class="fa-solid fa-chevron-right text-[10px]"></i></a>
-            </div>
-
-            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
-                <div class="w-12 h-12 bg-orange-50 text-orange-600 rounded-xl flex items-center justify-center text-xl font-bold mb-4">
-                    <i class="fa-solid fa-id-card"></i>
-                </div>
-                <h4 class="font-bold text-base text-blue-950 mb-1">Praman Patra</h4>
-                <p class="text-xs text-slate-500 leading-relaxed mb-4">Janm, Mrityu, aur Niwas praman patra hetu avashyak dastawez list.</p>
-                <a href="#contact" class="text-xs font-bold text-orange-600 flex items-center gap-1 hover:underline">Documents List <i class="fa-solid fa-chevron-right text-[10px]"></i></a>
-            </div>
-
-            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
-                <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center text-xl font-bold mb-4">
-                    <i class="fa-solid fa-wheat-awn"></i>
-                </div>
-                <h4 class="font-bold text-base text-blue-950 mb-1">Kisaan Seva</h4>
-                <p class="text-xs text-slate-500 leading-relaxed mb-4">Fasal bima, khad/beej vitran aur kisaan kalyan yojanaayein.</p>
-                <a href="#contact" class="text-xs font-bold text-orange-600 flex items-center gap-1 hover:underline">Details Dekhein <i class="fa-solid fa-chevron-right text-[10px]"></i></a>
-            </div>
-
-            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
-                <div class="w-12 h-12 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center text-xl font-bold mb-4">
-                    <i class="fa-solid fa-bowl-rice"></i>
-                </div>
-                <h4 class="font-bold text-base text-blue-950 mb-1">Ration Vitaran</h4>
-                <p class="text-xs text-slate-500 leading-relaxed mb-4">Uchit mooly dukan samay, ration card namankan aur updates.</p>
-                <a href="#contact" class="text-xs font-bold text-orange-600 flex items-center gap-1 hover:underline">Ration Info <i class="fa-solid fa-chevron-right text-[10px]"></i></a>
-            </div>
+        <div class="form-row">
+          <label for="gMobile">मोबाइल नंबर</label>
+          <input type="tel" id="gMobile" pattern="[0-9]{10}" required>
         </div>
-    </section>
-
-    <!-- Photo Gallery Section -->
-    <section class="py-14 px-4 bg-slate-200/60 border-y border-slate-300" id="gallery">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center max-w-2xl mx-auto mb-10 space-y-1">
-                <h3 class="text-2xl sm:text-3xl font-black text-blue-950">Gaon aur Panchayat Jhalak (Gallery)</h3>
-                <p class="text-xs text-slate-600">Gram Dhabli ke vikas karyon aur sthalon ki tasveerein</p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Gallery Item 1 -->
-                <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-slate-300 group">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=800&q=80" alt="Panchayat Bhavan" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    </div>
-                    <div class="p-4 bg-white">
-                        <h4 class="font-bold text-sm text-blue-950">Gram Panchayat Bhavan</h4>
-                        <p class="text-[11px] text-slate-500 mt-0.5">Mukhya Karyalay Parisar</p>
-                    </div>
-                </div>
-
-                <!-- Gallery Item 2 -->
-                <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-slate-300 group">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80" alt="Village Farming" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    </div>
-                    <div class="p-4 bg-white">
-                        <h4 class="font-bold text-sm text-blue-950">Harit Krishi Kshetra</h4>
-                        <p class="text-[11px] text-slate-500 mt-0.5">Gaon ke khet aur faslein</p>
-                    </div>
-                </div>
-
-                <!-- Gallery Item 3 -->
-                <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-slate-300 group">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80" alt="Village School" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    </div>
-                    <div class="p-4 bg-white">
-                        <h4 class="font-bold text-sm text-blue-950">Saskiya Shala Parisar</h4>
-                        <p class="text-[11px] text-slate-500 mt-0.5">Shiksha aur vikas</p>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <div class="form-grid-2">
+        <div class="form-row">
+          <label for="gWard">वार्ड चुनें</label>
+          <select id="gWard">
+            <option>वार्ड 1</option><option>वार्ड 2</option><option>वार्ड 3</option><option>वार्ड 4</option>
+            <option>वार्ड 5</option><option>वार्ड 6</option><option>वार्ड 7</option><option>वार्ड 8</option>
+          </select>
         </div>
-    </section>
-
-    <!-- Leadership Profiles with Photos -->
-    <section class="py-14 px-4 max-w-7xl mx-auto" id="leadership">
-        <div class="text-center max-w-2xl mx-auto mb-10 space-y-1">
-            <h3 class="text-2xl sm:text-3xl font-black text-blue-950">Panchayat Netruva & Prashashan</h3>
-            <p class="text-xs text-slate-500">Gram Panchayat Dhabli ke pratinidhi</p>
+        <div class="form-row">
+          <label for="gCategory">शिकायत की श्रेणी</label>
+          <select id="gCategory">
+            <option>पेयजल</option><option>सड़क</option><option>बिजली</option><option>स्वच्छता</option><option>अन्य</option>
+          </select>
         </div>
+      </div>
+      <div class="form-row">
+        <label for="gMsg">विवरण</label>
+        <textarea id="gMsg" rows="4" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">शिकायत भेजें</button>
+      <div class="form-success" id="formSuccess">आपकी शिकायत भेज दी गई है। धन्यवाद।</div>
+    </form>
+    <!--
+      ध्यान दें (Developer note): यह फॉर्म फिलहाल केवल फ्रंट-एंड डेमो है।
+      डेटा कहीं सेव या भेजा नहीं जाता। लाइव करने से पहले इसे किसी बैकएंड
+      (जैसे Google Forms, Formspree, या अपना सर्वर) से जोड़ें।
+      This form is a front-end demo only — connect a real backend before going live.
+    -->
+  </div>
+</section>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
-            <!-- Sarpanch -->
-            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center space-y-3">
-                <div class="w-28 h-28 rounded-full mx-auto border-4 border-orange-500 overflow-hidden shadow-md">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" alt="Sarpanch Ji" class="w-full h-full object-cover">
-                </div>
-                <div>
-                    <h4 class="font-bold text-lg text-blue-950">[Sarpanch Ji Ka Naam]</h4>
-                    <p class="text-xs font-bold text-orange-600 uppercase">Sarpanch - Gram Dhabli</p>
-                    <p class="text-xs text-slate-500 mt-1"><i class="fa-solid fa-phone mr-1"></i> +91 98XXXXXXXX</p>
-                </div>
-                <p class="text-xs text-slate-600 italic leading-relaxed">"Gram Dhabli ko swachh, shikshit, aur digital roop se aatm-nirbhar banana hamara sankalp hai."</p>
-            </div>
+<!-- ===== CONTACT ===== -->
+<section id="contact" class="section section-khadi">
+  <div class="container">
+    <div class="section-head">
+      <span class="stamp">संपर्क · CONTACT</span>
+      <h2>संपर्क करें</h2>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <ul class="contact-info">
+          <li><svg class="icon" viewBox="0 0 48 48"><path d="M24 8c7 10 11 16 11 21a11 11 0 01-22 0c0-5 4-11 11-21z"/></svg> पंचायत भवन, आदर्श ग्राम पंचायत, उदाहरण जिला, उदाहरण राज्य — 000000</li>
+          <li><svg class="icon" viewBox="0 0 48 48"><rect x="10" y="14" width="28" height="20" rx="2"/><path d="M10 16l14 11 14-11"/></svg> panchayat@example.gov.in</li>
+          <li><svg class="icon" viewBox="0 0 48 48"><circle cx="24" cy="24" r="14"/><line x1="24" y1="16" x2="24" y2="24"/><line x1="24" y1="24" x2="30" y2="28"/></svg> कार्यालय समय: सोमवार–शनिवार, सुबह 10 बजे – शाम 5 बजे</li>
+        </ul>
 
-            <!-- Sachiv -->
-            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center space-y-3">
-                <div class="w-28 h-28 rounded-full mx-auto border-4 border-blue-950 overflow-hidden shadow-md">
-                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80" alt="Panchayat Sachiv" class="w-full h-full object-cover">
-                </div>
-                <div>
-                    <h4 class="font-bold text-lg text-blue-950">[Panchayat Sachiv Ka Naam]</h4>
-                    <p class="text-xs font-bold text-blue-900 uppercase">Panchayat Sachiv (Secretary)</p>
-                    <p class="text-xs text-slate-500 mt-1"><i class="fa-solid fa-phone mr-1"></i> +91 97XXXXXXXX</p>
-                </div>
-                <p class="text-xs text-slate-600 italic leading-relaxed">"Sarkari sevaon ka laabh bina kisi vilamb ke har nagrik tak pahunchana hamari prathmikta hai."</p>
-            </div>
+        <div class="emergency-box">
+          <h3>आपातकालीन नंबर</h3>
+          <div class="emergency-grid">
+            <span>एकीकृत आपातकालीन सेवा</span><span class="num">112</span>
+            <span>पुलिस</span><span class="num">100</span>
+            <span>फायर</span><span class="num">101</span>
+            <span>एम्बुलेंस</span><span class="num">108</span>
+            <span>महिला हेल्पलाइन</span><span class="num">1091</span>
+            <span>चाइल्ड हेल्पलाइन</span><span class="num">1098</span>
+          </div>
         </div>
-    </section>
+      </div>
 
-    <!-- Complaint / Feedback Form -->
-    <section class="bg-blue-950 text-white py-14 px-4" id="complain">
-        <div class="max-w-3xl mx-auto space-y-6">
-            <div class="text-center space-y-2">
-                <span class="bg-orange-500/20 text-orange-300 border border-orange-500/30 text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-wider">Citizen Grievance</span>
-                <h3 class="text-2xl sm:text-3xl font-black">Online Shikayat Ya Sujhav Darj Karein</h3>
-                <p class="text-xs text-slate-300">Gaon ki kisi bhi samasya (Safai, Bijli, Paani, Sadak) ki soochana seedhe Panchayat ko dein.</p>
-            </div>
+      <div class="map-wrap">
+        <iframe src="https://www.google.com/maps?q=India&output=embed" loading="lazy" title="पंचायत स्थान मानचित्र" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <!-- ऊपर दिए गए मानचित्र लिंक को अपनी पंचायत के वास्तविक स्थान से बदलें -->
+    </div>
+  </div>
+</section>
 
-            <form class="bg-white/5 border border-white/10 p-6 sm:p-8 rounded-2xl space-y-4 text-xs text-slate-200">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block font-bold mb-1">Aapka Naam</label>
-                        <input type="text" placeholder="Apna poora naam likhein" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-white focus:outline-none focus:border-orange-500">
-                    </div>
-                    <div>
-                        <label class="block font-bold mb-1">Mobile Number</label>
-                        <input type="tel" placeholder="+91 XXXXX-XXXXX" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-white focus:outline-none focus:border-orange-500">
-                    </div>
-                </div>
-                <div>
-                    <label class="block font-bold mb-1">Samasya Ka Prakar (Category)</label>
-                    <select class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-white focus:outline-none focus:border-orange-500">
-                        <option>Peene ke Paani ki Samasya</option>
-                        <option>Street Light / Bijli</option>
-                        <option>Safai / Kachra Prabandhan</option>
-                        <option>Sadak / Naali Nirman</option>
-                        <option>Anya Sujhav / Shikayat</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block font-bold mb-1">Samasya Ka Vivaran (Details)</label>
-                    <textarea rows="3" placeholder="Apni samasya ke baare mein vistar se likhein..." class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-white focus:outline-none focus:border-orange-500"></textarea>
-                </div>
-                <button type="button" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3.5 rounded-lg tracking-wider uppercase transition shadow-lg text-xs">
-                    <i class="fa-solid fa-paper-plane mr-2"></i> Shikayat Submit Karein
-                </button>
-            </form>
-        </div>
-    </section>
+</main>
 
-    <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 py-12 px-4 border-t border-slate-800 text-xs">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-            <div class="space-y-3">
-                <h4 class="font-bold text-sm text-white uppercase tracking-wider">Gram Panchayat Dhabli</h4>
-                <p class="leading-relaxed text-slate-400">Panchayat Bhavan, Gram Dhabli, Post - Dhabli, Tehsil & District, Madhya Pradesh.</p>
-                <p class="text-slate-300 font-semibold"><i class="fa-solid fa-clock text-orange-500 mr-1.5"></i> Karyalay Samay: Somwar - Shanivar (10 AM - 5 PM)</p>
-            </div>
-            <div class="space-y-3">
-                <h4 class="font-bold text-sm text-white uppercase tracking-wider">Useful Government Portals</h4>
-                <ul class="space-y-2">
-                    <li><a href="#" class="hover:text-orange-400 transition">MP e-Panchayat Portal</a></li>
-                    <li><a href="#" class="hover:text-orange-400 transition">PM Awas Yojana Gramin</a></li>
-                    <li><a href="#" class="hover:text-orange-400 transition">Samagra Samajik Suraksha Mission</a></li>
-                    <li><a href="#" class="hover:text-orange-400 transition">CM Helpline MP (181)</a></li>
-                </ul>
-            </div>
-            <div class="space-y-3">
-                <h4 class="font-bold text-sm text-white uppercase tracking-wider">Map Location</h4>
-                <div class="w-full h-32 bg-slate-800 rounded-xl overflow-hidden border border-slate-700">
-                    <iframe class="w-full h-full border-0 opacity-80" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3665.2!2d75.8!3d22.7!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDQyJzAwLjAiTiA3NcKwNDgnMDAuMCJF!5e0!3m2!1sen!2sin!4v1600000000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
-                </div>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto border-t border-slate-800 pt-6 flex flex-col sm:flex-row justify-between items-center text-[11px] text-slate-500">
-            <p>© 2026 Gram Panchayat Dhabli. All Rights Reserved.</p>
-            <p class="mt-2 sm:mt-0">Designed & Developed for Digital Panchayat Portal Initiative.</p>
-        </div>
-    </footer>
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <div class="brand" style="margin-bottom:1rem;">
+        <svg class="icon icon-lg" viewBox="0 0 48 48" style="color:var(--turmeric)"><ellipse cx="17" cy="17" rx="10" ry="8"/><ellipse cx="30" cy="19" rx="9" ry="7"/><line x1="19" y1="24" x2="18" y2="34"/><line x1="27" y1="25" x2="28" y2="34"/></svg>
+        <span class="brand-name" style="color:var(--paper);">आदर्श ग्राम पंचायत</span>
+      </div>
+      <p>पंचायती परंपरा और डिजिटल सेवाओं के बीच का सेतु — गाँव के हर नागरिक के लिए।</p>
+      <div class="social-pills">
+        <a href="#">Facebook</a><a href="#">YouTube</a><a href="#">X / Twitter</a>
+      </div>
+    </div>
+    <div>
+      <h4>त्वरित लिंक</h4>
+      <ul>
+        <li><a href="#about">हमारे बारे में</a></li>
+        <li><a href="#members">पदाधिकारी</a></li>
+        <li><a href="#works">विकास कार्य</a></li>
+        <li><a href="#services">सेवाएं</a></li>
+        <li><a href="#downloads">डाउनलोड</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>अन्य लिंक</h4>
+      <ul>
+        <li><a href="#schemes">योजनाएं</a></li>
+        <li><a href="#notices">सूचनाएं</a></li>
+        <li><a href="#gallery">गैलरी</a></li>
+        <li><a href="#grievance">शिकायत दर्ज करें</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>संपर्क</h4>
+      <ul>
+        <li>पंचायत भवन, उदाहरण जिला</li>
+        <li>panchayat@example.gov.in</li>
+        <li>+91-XXXXXXXXXX</li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <div class="roots" aria-hidden="true">
+      <span style="height:18px;"></span><span style="height:28px;"></span><span style="height:14px;"></span><span style="height:24px;"></span><span style="height:12px;"></span>
+    </div>
+    © <span id="year"></span> आदर्श ग्राम पंचायत। सर्वाधिकार सुरक्षित।
+  </div>
+</footer>
 
+<button class="back-to-top" id="backToTop" aria-label="ऊपर जाएं">
+  <svg class="icon" viewBox="0 0 48 48"><path d="M14 28 24 16 34 28"/></svg>
+</button>
+
+<script>
+(function(){
+  "use strict";
+
+  // ---- Footer year ----
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ---- Sticky header shadow ----
+  var header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', function(){
+    header.classList.toggle('scrolled', window.scrollY > 8);
+  });
+
+  // ---- Mobile nav toggle ----
+  var hamburger = document.getElementById('hamburger');
+  var navMenu = document.getElementById('navMenu');
+  hamburger.addEventListener('click', function(){
+    var isOpen = navMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  navMenu.querySelectorAll('a').forEach(function(link){
+    link.addEventListener('click', function(){
+      navMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded','false');
+    });
+  });
+
+  // ---- Active nav link on scroll ----
+  var sections = document.querySelectorAll('main section[id], .hero[id]');
+  var navLinks = navMenu.querySelectorAll('a');
+  if('IntersectionObserver' in window){
+    var navObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          navLinks.forEach(function(l){ l.classList.remove('active'); });
+          var match = navMenu.querySelector('a[href="#'+entry.target.id+'"]');
+          if(match) match.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-45% 0px -45% 0px' });
+    sections.forEach(function(s){ navObserver.observe(s); });
+  }
+
+  // ---- Font size controls (in-memory only, resets on reload) ----
+  var fontPct = 100;
+  function applyFont(){ document.documentElement.style.fontSize = fontPct + '%'; }
+  document.getElementById('fontInc').addEventListener('click', function(){ fontPct = Math.min(130, fontPct+10); applyFont(); });
+  document.getElementById('fontDec').addEventListener('click', function(){ fontPct = Math.max(80, fontPct-10); applyFont(); });
+  document.getElementById('fontReset').addEventListener('click', function(){ fontPct = 100; applyFont(); });
+
+  // ---- Stats counter ----
+  var statEls = document.querySelectorAll('.stat-num');
+  function animateStat(el){
+    var target = parseInt(el.getAttribute('data-target'),10);
+    var suffix = el.getAttribute('data-suffix') || '';
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduced){ el.textContent = target.toLocaleString('en-IN') + suffix; return; }
+    var start = null, duration = 1400;
+    function step(ts){
+      if(!start) start = ts;
+      var progress = Math.min((ts-start)/duration, 1);
+      var eased = 1 - Math.pow(1-progress, 3);
+      el.textContent = Math.floor(eased*target).toLocaleString('en-IN') + suffix;
+      if(progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  if('IntersectionObserver' in window){
+    var statObserver = new IntersectionObserver(function(entries, obs){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){ animateStat(entry.target); obs.unobserve(entry.target); }
+      });
+    }, { threshold: 0.5 });
+    statEls.forEach(function(el){ statObserver.observe(el); });
+  } else {
+    statEls.forEach(animateStat);
+  }
+
+  // ---- Service modal ----
+  var serviceDocs = {
+    birth: { title:'जन्म प्रमाण पत्र — आवश्यक दस्तावेज़', docs:['अस्पताल की जन्म पर्ची','माता-पिता का आधार कार्ड','निवास प्रमाण'] },
+    death: { title:'मृत्यु प्रमाण पत्र — आवश्यक दस्तावेज़', docs:['डॉक्टर/अस्पताल की मृत्यु पर्ची','मृतक का आधार कार्ड','निवास प्रमाण'] },
+    income: { title:'आय प्रमाण पत्र — आवश्यक दस्तावेज़', docs:['आधार कार्ड','आय स्व-घोषणा पत्र','निवास प्रमाण'] },
+    caste: { title:'जाति प्रमाण पत्र — आवश्यक दस्तावेज़', docs:['आधार कार्ड','परिवार का पुराना जाति प्रमाण पत्र (यदि हो)','निवास प्रमाण'] },
+    residence: { title:'निवास प्रमाण पत्र — आवश्यक दस्तावेज़', docs:['आधार कार्ड','राशन कार्ड','बिजली/पानी का बिल'] },
+    propertytax: { title:'संपत्ति कर — आवश्यक दस्तावेज़', docs:['संपत्ति के कागजात','पिछली कर रसीद','आधार कार्ड'] },
+    water: { title:'जल संयोजन — आवश्यक दस्तावेज़', docs:['आधार कार्ड','निवास प्रमाण','संपत्ति के कागजात'] },
+    marriage: { title:'विवाह पंजीकरण — आवश्यक दस्तावेज़', docs:['दोनों पक्षों का आधार कार्ड','आयु प्रमाण','विवाह की फोटो/निमंत्रण पत्र'] },
+    trade: { title:'व्यापार लाइसेंस — आवश्यक दस्तावेज़', docs:['आधार कार्ड','दुकान का पता प्रमाण','पासपोर्ट साइज फोटो'] },
+    building: { title:'भवन निर्माण अनुमति — आवश्यक दस्तावेज़', docs:['भूमि के कागजात','साइट मैप/नक्शा','आधार कार्ड'] }
+  };
+  var serviceModal = document.getElementById('serviceModal');
+  var modalTitle = document.getElementById('modalTitle');
+  var modalDocs = document.getElementById('modalDocs');
+  function checkIconSVG(){
+    return '<svg class="icon" viewBox="0 0 48 48"><path d="M12 25 20 33 36 15"/></svg>';
+  }
+  document.querySelectorAll('.svc-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var key = btn.closest('.svc-card').getAttribute('data-service');
+      var data = serviceDocs[key];
+      if(!data) return;
+      modalTitle.textContent = data.title;
+      modalDocs.innerHTML = data.docs.map(function(d){ return '<li>'+checkIconSVG()+'<span>'+d+'</span></li>'; }).join('');
+      serviceModal.classList.add('active');
+    });
+  });
+  function closeModal(m){ m.classList.remove('active'); }
+  document.getElementById('closeServiceModal').addEventListener('click', function(){ closeModal(serviceModal); });
+  serviceModal.addEventListener('click', function(e){ if(e.target === serviceModal) closeModal(serviceModal); });
+
+  // ---- Gallery lightbox ----
+  var lightbox = document.getElementById('lightbox');
+  var lightboxTile = document.getElementById('lightboxTile');
+  var lightboxCaption = document.getElementById('lightboxCaption');
+  document.querySelectorAll('.gallery-tile').forEach(function(tile){
+    tile.addEventListener('click', function(){
+      lightboxTile.className = 'lightbox-tile ' + Array.from(tile.classList).find(function(c){ return /^g\d$/.test(c); });
+      lightboxCaption.textContent = tile.getAttribute('data-caption');
+      lightbox.classList.add('active');
+    });
+  });
+  document.getElementById('closeLightbox').addEventListener('click', function(){ closeModal(lightbox); });
+  lightbox.addEventListener('click', function(e){ if(e.target === lightbox) closeModal(lightbox); });
+
+  // ---- Escape key closes any open modal ----
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){ closeModal(serviceModal); closeModal(lightbox); }
+  });
+
+  // ---- Notice search ----
+  var noticeSearch = document.getElementById('noticeSearch');
+  var noticeItems = document.querySelectorAll('#noticeList li');
+  noticeSearch.addEventListener('input', function(){
+    var q = noticeSearch.value.trim().toLowerCase();
+    noticeItems.forEach(function(li){
+      li.classList.toggle('hide', q.length>0 && li.textContent.toLowerCase().indexOf(q)===-1);
+    });
+  });
+
+  // ---- Grievance form (front-end demo only, no backend) ----
+  var grievanceForm = document.getElementById('grievanceForm');
+  var formSuccess = document.getElementById('formSuccess');
+  grievanceForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    formSuccess.classList.add('show');
+    grievanceForm.reset();
+    formSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+
+  // ---- Back to top ----
+  var backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', function(){
+    backToTop.classList.toggle('show', window.scrollY > 500);
+  });
+  backToTop.addEventListener('click', function(){
+    window.scrollTo({ top:0, behavior:'smooth' });
+  });
+
+})();
+</script>
 </body>
 </html>
